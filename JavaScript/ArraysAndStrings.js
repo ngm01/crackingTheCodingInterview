@@ -2,7 +2,7 @@
 // What if you cannot use additional data structures?
 function isUnique(str){
     // e.g. 'abcdefgeh' => false
-    // assume for now only (lower-case) letters, so a 26 letter alphabet. Can change this
+    // assume for now only (lower-case) letters, so a 26 letter alphabet. Can change this.
     // number depending on charaacter set used.
     if(str.length > 26){
         return false;

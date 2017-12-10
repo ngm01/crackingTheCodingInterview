@@ -1,6 +1,4 @@
 function selectionSort(arr){
-    //so why does this work?
-    //the arr.length-1, that is.
     for(let i=0; i< arr.length - 1; i++){
         let min = i;
         for(let k=i+1; k< arr.length; k++){
@@ -17,7 +15,6 @@ function selectionSort(arr){
 var myArr = [3, 99, 7, 101, -3];
 myArr2 = [301, -3, 99, 7, 101, 300]
 
-//console.log(selectionSort(myArr));
 
 function mergeSort(arr){
     if (arr.length > 1){
