@@ -1,3 +1,9 @@
+var myArr = [3, 99, 50, 101, -3, 7];
+
+function bubbleSort(arr){
+    //TODO
+}
+
 function selectionSort(arr){
     for(let i=0; i< arr.length - 1; i++){
         let min = i;
@@ -12,9 +18,13 @@ function selectionSort(arr){
     return arr;
 }
 
-var myArr = [3, 99, 7, 101, -3];
-myArr2 = [301, -3, 99, 7, 101, 300]
+function insertionSort(arr){
+    //TODO
+}
 
+function shellSort(arr){
+    //TODO
+}
 
 function mergeSort(arr){
     if (arr.length > 1){
@@ -46,8 +56,63 @@ function mergeSort(arr){
     }
 }
 
-console.log(mergeSort(myArr2));
-
 function quickSort(arr){
-    return arr;
+    quickSortRecursor(arr, 0, arr.length - 1);
+
+    function quickSortRecursor(arr, begin, end){
+
+        if(begin < end){
+
+            var divideHere = divideAndConquer(arr, begin, end);
+
+            quickSortRecursor(arr, begin, divideHere-1);
+            quickSortRecursor(arr, divideHere+1, end);
+        }
+
+    }
+
+    function divideAndConquer(arr, begin, end){
+        // let fakeArray = arr.slice(begin, end + 1);
+        // console.log("Working on subarray: "  + fakeArray);
+
+        var pivot = arr[begin];
+
+        var leftIdx = begin + 1;
+        var rightIdx = end;
+
+        var indicesHaveCrossed = false;
+
+        while(!indicesHaveCrossed){
+
+            while(leftIdx <= rightIdx && arr[leftIdx] <= pivot){
+                leftIdx++;
+            }
+            while(rightIdx >= leftIdx && arr[rightIdx] >= pivot){
+                rightIdx--;
+            }
+
+            if(rightIdx < leftIdx){
+                indicesHaveCrossed = true;
+            }
+            else{
+                // console.log("Swapping left and right indices: " + arr[leftIdx] + " and " + arr[rightIdx]);
+                let temp = arr[leftIdx];
+                arr[leftIdx] = arr[rightIdx];
+                arr[rightIdx] = temp;
+                // console.log("Swapped: " + arr);
+            }
+        }
+        
+        // console.log("Swapping begin and right index: " + arr[begin] + " and " + arr[rightIdx]);
+        let temp = arr[begin];
+        arr[begin] = arr[rightIdx];
+        arr[rightIdx] = temp;
+        // console.log("Swapped: " + arr);
+
+        return rightIdx;
+    }
 }
+
+console.log("Unsorted: " + myArr);
+quickSort(myArr);
+console.log("Sorted: " + myArr);
