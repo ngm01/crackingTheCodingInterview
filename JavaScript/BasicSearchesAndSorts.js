@@ -72,8 +72,6 @@ function quickSort(arr){
     }
 
     function divideAndConquer(arr, begin, end){
-        // let fakeArray = arr.slice(begin, end + 1);
-        // console.log("Working on subarray: "  + fakeArray);
 
         var pivot = arr[begin];
 
@@ -95,24 +93,51 @@ function quickSort(arr){
                 indicesHaveCrossed = true;
             }
             else{
-                // console.log("Swapping left and right indices: " + arr[leftIdx] + " and " + arr[rightIdx]);
                 let temp = arr[leftIdx];
                 arr[leftIdx] = arr[rightIdx];
                 arr[rightIdx] = temp;
-                // console.log("Swapped: " + arr);
+    
             }
         }
         
-        // console.log("Swapping begin and right index: " + arr[begin] + " and " + arr[rightIdx]);
         let temp = arr[begin];
         arr[begin] = arr[rightIdx];
         arr[rightIdx] = temp;
-        // console.log("Swapped: " + arr);
 
         return rightIdx;
+    }
+}
+
+function binarySearch(arr, sought, begin=0, end=arr.length - 1, mid=arr.length/2){
+    mid = Math.floor(mid);
+    if(arr[mid]==sought){
+        console.log("Found at index:", mid);
+        return mid;
+    }
+    else if(arr[mid]>sought){
+        if(mid == end){
+            console.log("Not found");
+            return -1;
+        }
+        else{
+            // console.log("Searching left, mid is now:", Math.floor((mid + begin)/2));
+            binarySearch(arr, sought, begin, mid, (mid + begin)/2)
+        }
+    }
+    else{
+        if(mid==begin){
+            console.log("Not found");
+            return -1;
+        }
+        else{
+            // console.log("Searching right, mid is now:", Math.floor((mid + end)/2));
+            binarySearch(arr, sought, mid, end, (mid + end)/2)
+        }
     }
 }
 
 console.log("Unsorted: " + myArr);
 quickSort(myArr);
 console.log("Sorted: " + myArr);
+binarySearch(myArr, -3);
+binarySearch(myArr, 2);
