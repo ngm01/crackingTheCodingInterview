@@ -139,5 +139,9 @@ function binarySearch(arr, sought, begin=0, end=arr.length - 1, mid=arr.length/2
 console.log("Unsorted: " + myArr);
 quickSort(myArr);
 console.log("Sorted: " + myArr);
+//Search for elements that are in the array
 binarySearch(myArr, -3);
+binarySearch(myArr, 99);
+//Search for elements that aren't
 binarySearch(myArr, 2);
+binarySearch(myArr, 88);
