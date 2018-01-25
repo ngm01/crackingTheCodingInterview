@@ -145,3 +145,5 @@ binarySearch(myArr, 99);
 //Search for elements that aren't
 binarySearch(myArr, 2);
 binarySearch(myArr, 88);
+binarySearch(myArr, -3);
+binarySearch(myArr, 2);
