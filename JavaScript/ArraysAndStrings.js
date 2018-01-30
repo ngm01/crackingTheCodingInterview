@@ -60,16 +60,38 @@ function checkPermutation(aStr, bStr){
         return true;
     }
 
-    function splitSortJoin(str){
-        str = str.split('');
-        
-        BasicSearchesAndSorts.quickSort(str);
-        str = str.join('');
-        return str;
-    }
 
 }
 
-checkPermutation("blah", "foobar");
-checkPermutation('blah', 'halb');
-checkPermutation('blah', 'half');
+// checkPermutation("blah", "foobar");
+// checkPermutation('blah', 'halb');
+// checkPermutation('blah', 'half');
+
+
+// 1.3 URLify: replace all spaces in a string with '%20'
+// CtCI is written with Java, C++, &c programmers in mind,
+// not js codemonkeys like me...
+// so this problem is really supposed to make you think about
+// memory allocation etc...
+function URLify(str){
+    //lazy way:
+    return str.replace(" ", "%20")
+}
+
+// 1.4 Palindrome Permutation: Given a string, write a function to check if it's a permutation of
+// a palindrome.
+function palindromePermutation(str){
+    console.log(splitSortJoin(str));
+}
+
+// helper function
+function splitSortJoin(str){
+    str = str.split('');
+    
+    BasicSearchesAndSorts.quickSort(str);
+    str = str.join('');
+    return str;
+}
+
+palindromePermutation("taco cat");
+palindromePermutation("tacocat");
