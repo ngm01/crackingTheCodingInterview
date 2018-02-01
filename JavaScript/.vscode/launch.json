@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/BasicSearchesAndSorts.js"
+            "program": "${workspaceFolder}/ArraysAndStrings.js"
         }
     ]
 }

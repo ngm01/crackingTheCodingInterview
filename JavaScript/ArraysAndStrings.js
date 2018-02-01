@@ -75,16 +75,49 @@ function checkPermutation(aStr, bStr){
 // memory allocation etc...
 function URLify(str){
     //lazy way:
-    return str.replace(" ", "%20")
+    return replaceSpaces(str, "%20");
 }
 
 // 1.4 Palindrome Permutation: Given a string, write a function to check if it's a permutation of
-// a palindrome.
+// a palindrome. 
 function palindromePermutation(str){
-    console.log(splitSortJoin(str));
+    //Assume only letters and spaces? Also should convert all letters to lowercase
+    original = str;
+    str = splitSortJoin(replaceSpaces(str, ""));
+    counts = {};
+    oddsAllowed = str.length % 2;
+    oddsCounted = 0;
+    for(i=0;i<str.length;i++){
+        if(!counts[str[i]]){
+            counts[str[i]] = 1;
+        }
+        else{
+            counts[str[i]]++
+        }
+    }
+    for(charCount in counts){
+        if(counts[charCount] % 2 == 1){
+            oddsCounted++;
+        }
+        if(oddsCounted > oddsAllowed){
+            console.log('"' + original + '"', "is not a permutation of a palindrome.");
+            return false;
+        }
+    }
+    console.log('"' + original + '"', "is a permutation of a palindrome.")
+    return true;
 }
 
-// helper function
+// palindromePermutation("able was i ere i saw elba");
+// palindromePermutation("able was i ere i saw elbe");
+
+// 1.5 One Away: three types of string edits: insert, remove, or replace a character.
+// Given two strings, write a function to check if they are one edit (or zero) away.
+function oneAway(aStr, bStr){
+    return 0;
+}
+
+// Helper functions:
 function splitSortJoin(str){
     str = str.split('');
     
@@ -93,5 +126,11 @@ function splitSortJoin(str){
     return str;
 }
 
-palindromePermutation("taco cat");
-palindromePermutation("tacocat");
+function replaceSpaces(str, replacement){
+    for(i=0;i<str.length;i++){
+        if(str[i]==" "){
+            str = str.replace(" ", replacement);
+        }
+    }
+    return str;
+}
