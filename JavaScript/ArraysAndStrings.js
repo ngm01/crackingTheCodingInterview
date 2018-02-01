@@ -1,4 +1,6 @@
+// import searches & sorts
 BasicSearchesAndSorts = require('./BasicSearchesAndSorts');
+
 // 1.1 Is Unique - implement an algorithm to determine whether a string contains all unqiue characters.
 // What if you cannot use additional data structures?
 function isUnique(str){
@@ -22,16 +24,9 @@ function isUnique(str){
 }
 
 // and if we can't use other data structures? What then?
-// naive way: nested loops. Bad runtime.
-// better way: sort the letters in the string.
-// which sorting algorithm to use?
-// I should make a file of Basic Searches and Sorts.
 function isUniqueStringsOnly(str){
-
+    return 0;
 }
-
-// console.log(isUnique('bar'));
-// console.log(isUnique('foo'));
 
 // 1.2 Check Permutuation: given two strings, write a method to decide if one is a permutation of the other.
 function checkPermutation(aStr, bStr){
@@ -63,16 +58,7 @@ function checkPermutation(aStr, bStr){
 
 }
 
-// checkPermutation("blah", "foobar");
-// checkPermutation('blah', 'halb');
-// checkPermutation('blah', 'half');
-
-
 // 1.3 URLify: replace all spaces in a string with '%20'
-// CtCI is written with Java, C++, &c programmers in mind,
-// not js codemonkeys like me...
-// so this problem is really supposed to make you think about
-// memory allocation etc...
 function URLify(str){
     //lazy way:
     return replaceSpaces(str, "%20");
@@ -108,13 +94,45 @@ function palindromePermutation(str){
     return true;
 }
 
-// palindromePermutation("able was i ere i saw elba");
-// palindromePermutation("able was i ere i saw elbe");
-
 // 1.5 One Away: three types of string edits: insert, remove, or replace a character.
 // Given two strings, write a function to check if they are one edit (or zero) away.
 function oneAway(aStr, bStr){
-    return 0;
+    if(aStr==bStr){
+        return true;
+    }
+    if(aStr.length > bStr.length + 1 || bStr.length > aStr.length + 1){
+        return false;
+    }
+    aStr = splitSortJoin(aStr);
+    bStr = splitSortJoin(bStr);
+    diffCount = 0;
+    if(aStr.length != bStr.length){
+        diffCount++;
+    }
+    if(aStr.length > bStr.length){
+        longer = aStr;
+        shorter = bStr;
+    }
+    else{
+        longer = bStr;
+        shorter = aStr;
+    }
+    for(i=0;i<shorter.length;i++){
+        if(shorter[i] != longer[i]){
+            diffCount++;
+        }
+        if(diffCount>1){
+            return false;
+        }
+    }
+    return true;
+}
+
+// 1.6 String Compression: Perform basic string compression using counts of repeated characters.
+// e.g. aabcccccaaa => a2b1c5a3
+// If compression does not reduce size of string, return original string.
+function compressString(str){
+    return str;
 }
 
 // Helper functions:
@@ -134,3 +152,20 @@ function replaceSpaces(str, replacement){
     }
     return str;
 }
+
+// TESTS:
+
+// console.log(isUnique('bar'));
+// console.log(isUnique('foo'));
+
+// checkPermutation("blah", "foobar");
+// checkPermutation('blah', 'halb');
+// checkPermutation('blah', 'half');
+
+// palindromePermutation("able was i ere i saw elba");
+// palindromePermutation("able was i ere i saw elbe");
+
+// console.log(oneAway('cat', 'dog'));
+// console.log(oneAway('cat', 'hat'));
+// console.log(oneAway('cat', 'cats'));
+// console.log(oneAway('cat', 'hats'))
