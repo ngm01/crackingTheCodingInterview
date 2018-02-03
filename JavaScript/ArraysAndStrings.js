@@ -132,7 +132,27 @@ function oneAway(aStr, bStr){
 // e.g. aabcccccaaa => a2b1c5a3
 // If compression does not reduce size of string, return original string.
 function compressString(str){
-    return str;
+    str = replaceSpaces(str, "");
+    var compressed = "";
+    let letterCount=0;
+    for(let i=0;i<str.length;i++){
+        logVariables({compressed, letterCount});
+        if(compressed.length >= str.length){
+            return str;
+        }
+        if(letterCount===0){
+            compressed+=str[i];
+            letterCount++;
+        }
+        if(str[i]==str[i+1]){
+            letterCount++;
+        }
+        else{
+            compressed+=letterCount;
+            letterCount=0;
+        }
+    }
+    return compressed;
 }
 
 // Helper functions:
@@ -153,6 +173,20 @@ function replaceSpaces(str, replacement){
     return str;
 }
 
+// debug helper: feed it an object containing variables you want to log
+function logVariables(varObj){
+    if(typeof varObj != 'object'){
+        console.log("logVariables takes an object");
+        return -1;
+    }
+    else{
+        for(k in varObj){
+            console.log(k + ": " + varObj[k]);
+        }
+        return 1;
+    }
+}
+
 // TESTS:
 
 // console.log(isUnique('bar'));
@@ -168,4 +202,7 @@ function replaceSpaces(str, replacement){
 // console.log(oneAway('cat', 'dog'));
 // console.log(oneAway('cat', 'hat'));
 // console.log(oneAway('cat', 'cats'));
-// console.log(oneAway('cat', 'hats'))
+// console.log(oneAway('cat', 'hats'));
+
+console.log(compressString('aabcccccaaa'));
+// console.log(compressString('yeeeeeeeeee haaaaaaaaaa'));
