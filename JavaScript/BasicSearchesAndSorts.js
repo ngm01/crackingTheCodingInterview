@@ -72,12 +72,12 @@ module.exports = {
 
         function divideAndConquer(arr, begin, end){
 
-            var pivot = arr[begin];
+            const pivot = arr[begin];
 
-            var leftIdx = begin + 1;
-            var rightIdx = end;
+            let leftIdx = begin + 1;
+            let rightIdx = end;
 
-            var indicesHaveCrossed = false;
+            let indicesHaveCrossed = false;
 
             while(!indicesHaveCrossed){
 

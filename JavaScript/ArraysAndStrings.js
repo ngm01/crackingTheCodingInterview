@@ -12,7 +12,7 @@ function isUnique(str){
     }
     charValArr = [];
     for(let i=0; i<str.length; i++){
-        var val = str.charCodeAt(i);
+        let val = str.charCodeAt(i);
         if(charValArr[val]){
             return false;
         }
@@ -45,9 +45,9 @@ function checkPermutation(aStr, bStr){
     }
 
     function compareStrings(aStr, bStr){
-        aStr = splitSortJoin(aStr);
-        bStr = splitSortJoin(bStr);
-        for(i=0; i<aStr.length; i++){
+        const aStr = splitSortJoin(aStr);
+        const bStr = splitSortJoin(bStr);
+        for(let i=0; i<aStr.length; i++){
             if(aStr[i] != bStr[i]){
                 return false;
             }
@@ -68,12 +68,12 @@ function URLify(str){
 // a palindrome. 
 function palindromePermutation(str){
     //Assume only letters and spaces? Also should convert all letters to lowercase
-    original = str;
-    str = splitSortJoin(replaceSpaces(str, ""));
-    counts = {};
+    const original = str;
+    const str = splitSortJoin(replaceSpaces(str, ""));
+    let counts = {};
     oddsAllowed = str.length % 2;
     oddsCounted = 0;
-    for(i=0;i<str.length;i++){
+    for(let i=0;i<str.length;i++){
         if(!counts[str[i]]){
             counts[str[i]] = 1;
         }
@@ -117,7 +117,7 @@ function oneAway(aStr, bStr){
         longer = bStr;
         shorter = aStr;
     }
-    for(i=0;i<shorter.length;i++){
+    for(let i=0;i<shorter.length;i++){
         if(shorter[i] != longer[i]){
             diffCount++;
         }
@@ -133,10 +133,9 @@ function oneAway(aStr, bStr){
 // If compression does not reduce size of string, return original string.
 function compressString(str){
     str = replaceSpaces(str, "");
-    var compressed = "";
+    let compressed = "";
     let letterCount=0;
     for(let i=0;i<str.length;i++){
-        logVariables({compressed, letterCount});
         if(compressed.length >= str.length){
             return str;
         }
@@ -155,6 +154,13 @@ function compressString(str){
     return compressed;
 }
 
+// 1.7 Rotate Matrix: given an image represented by an NxN matrix, where each pixel in
+// the image is 4 bytes, write a method to rotate the image 90 degrees.
+// Can you do this in place?
+function rotateMatrix(n){
+    return n;
+}
+
 // Helper functions:
 function splitSortJoin(str){
     str = str.split('');
@@ -165,7 +171,7 @@ function splitSortJoin(str){
 }
 
 function replaceSpaces(str, replacement){
-    for(i=0;i<str.length;i++){
+    for(let i=0;i<str.length;i++){
         if(str[i]==" "){
             str = str.replace(" ", replacement);
         }
